@@ -23,7 +23,8 @@ void initArray(DynamicArray *arr, int initialCapacity)
 
 void append(DynamicArray *arr, int value)
 {
-    if(arr->size == arr->capacity)
+    // If the array is full, reallocate memory
+    if (arr->size == arr->capacity)
     {
         arr->data = (int *)realloc(arr->data, 2 * arr->capacity * sizeof(int));
         if (arr->data == NULL)
@@ -33,6 +34,9 @@ void append(DynamicArray *arr, int value)
         }
         arr->capacity *= 2;
     }
+
+    arr->data[arr->size] = value; //stores value at current index
+    arr->size++;                  //increments size
 }
 
 int main()
