@@ -127,14 +127,5 @@ void reverseList(Node **head)
 
 int main()
 {
-    Node *firstNode = createNode(10); // Example: Creating a node with value 10
-    if (firstNode)                    // checks if node exists (is not NULL)
-    {
-        printf("Node created with data: %d\n", firstNode->data);
-    }
-
-    // Free memory to avoid leaks
-    free(firstNode);
-
     return 0;
 }
