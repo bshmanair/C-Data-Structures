@@ -113,7 +113,7 @@ void reverseList(Node **head)
 {
     Node *prev = NULL;
     Node *current = *head;
-    Node *next = current->next;
+    Node *next = NULL;
 
     while (current != NULL)
     {
