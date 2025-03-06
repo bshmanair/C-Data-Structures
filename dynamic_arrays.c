@@ -39,21 +39,43 @@ void append(DynamicArray *arr, int value)
     arr->size++;                  //increments size
 }
 
+void removeAt(DynamicArray *arr, int index)
+{
+    if(index < 0 || index >= arr->size)
+    {
+        printf("Index out of bounds.\n");
+        return;
+    }
+
+    for(int i = index; i < arr->size - 1; i++)
+    {
+        arr->data[i] = arr->data[i + 1];
+    }
+    arr->size--;
+}
+
+void destroyArray(DynamicArray *arr)
+{
+    free(arr->data);
+    arr->data = NULL;
+    arr->size = 0;
+    arr->capacity = 0;
+}
+
 int main()
 {
     DynamicArray arr;
     initArray(&arr, 5);
 
-    arr.size = 5;
-
-    for (int i = 0; i < arr.size; i++)
+    for(int i = 1; i <= 8; i++)
     {
-        arr.data[i] = i + 1;
+        append(&arr,i);
     }
-    for (int i = 0; i < arr.size; i++)
+    for(int i = 0; i < arr.size; i++)
     {
         printf("%d ", arr.data[i]);
     }
-    free(arr.data);
+
+    destroyArray(&arr);
     return 0;
 }
