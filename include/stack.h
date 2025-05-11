@@ -25,4 +25,7 @@ int stack_size(stack_t* stack);
 int stack_capacity(stack_t* stack);
 void stack_print(stack_t* stack);
 
-#endif // STACK_H
+// Some optional operations I made
+stack_t* stack_create_from_array(int* arr, int length);
+
+#endif

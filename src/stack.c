@@ -10,11 +10,19 @@ stack_t* stack_create(int capacity) {
 
 void stack_push(stack_t* stack, int value) {
     if (stack->top == stack->capacity - 1) {
-        printf("Stack is full. Value cannot be pushed.\n");
-        return;
+        int new_capacity = stack->capacity * 2;
+        int* new_items = realloc(stack->items, sizeof(int) * new_capacity);
+        if (new_items == NULL) {
+            printf("Memory reallocation failed.\n");
+            return;
+        }
+        stack->items = new_items;
+        stack->capacity = new_capacity;
     }
+
     stack->items[++(stack->top)] = value;
 }
+
 
 int stack_pop(stack_t* stack) {
     if (stack->top == -1) {
@@ -57,4 +65,18 @@ int stack_size(stack_t* stack) {
 
 int stack_capacity(stack_t* stack) {
     return stack->capacity;
+}
+
+void stack_clear(stack_t* stack) {
+    memset(stack->items,0,sizeof(int) * stack->capacity);
+    free(stack->items);
+}
+
+stack_t* stack_create_from_array(int* arr, int length) {
+    stack_t* stack = (stack_t*)malloc(sizeof(stack_t)); 
+    stack->capacity = length * 2;
+    stack->items = (int*)malloc(sizeof(int)*stack->capacity);
+    memcpy(stack->items,arr,length*sizeof(int));
+    stack->top = length - 1;
+    return stack;
 }
