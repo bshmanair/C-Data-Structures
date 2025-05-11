@@ -7,6 +7,11 @@ DynamicArray *createArray(size_t initialCapacity)
     DynamicArray *arr = (DynamicArray *)malloc(sizeof(DynamicArray));
     // data is the array, so allocate initial capacity to it
     arr->data = (int *)malloc(initialCapacity * sizeof(int));
+    if (!arr || !arr->data) 
+    {
+        free(arr);
+        return NULL;
+    }
     // initial size of array is 0
     arr->size = 0;
     // initial capacity is inputted by user

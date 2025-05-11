@@ -17,7 +17,7 @@ void push(struct Stack* stack, int value)
     else
     {
         stack->top++;
-        stack->items[stack->top] = value
+        stack->items[stack->top] = value;
     }
 }
 
