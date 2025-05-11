@@ -1,80 +1,60 @@
 #include "stack.h"
 
-struct Stack* createStack(int capacity)
-{
-    struct Stack* stack = (struct Stack*)malloc(sizeof(struct Stack));
-    stack->items = malloc(sizeof(int) * capacity);
+stack_t* stack_create(int capacity) {
+    stack_t* stack = (stack_t*)malloc(sizeof(stack_t));
+    stack->items = (int*)malloc(sizeof(int) * capacity);
     stack->top = -1;
     stack->capacity = capacity;
     return stack;
 }
 
-void push(struct Stack* stack, int value)
-{
-    if(stack-> top == stack->capacity-1) {
-        printf("Stack is full. Value cannot be pushed.");
+void stack_push(stack_t* stack, int value) {
+    if (stack->top == stack->capacity - 1) {
+        printf("Stack is full. Value cannot be pushed.\n");
+        return;
     }
-    else
-    {
-        stack->top++;
-        stack->items[stack->top] = value;
-    }
+    stack->items[++(stack->top)] = value;
 }
 
-int pop(struct Stack* stack)
-{
-    if(stack->top == -1) {
+int stack_pop(stack_t* stack) {
+    if (stack->top == -1) {
         printf("Stack is empty, cannot pop.\n");
         return -1;
     }
-
-    int val = stack->items[stack->top];
-    stack->top--;
-    return val;    
+    return stack->items[(stack->top)--];
 }
 
-int peek(struct Stack* stack)
-{
-    if(stack->top == -1) {
+int stack_peek(stack_t* stack) {
+    if (stack->top == -1) {
         printf("Stack is empty, nothing to peek at.\n");
         return -1;
     }
     return stack->items[stack->top];
 }
 
-int isEmpty(struct Stack* stack)
-{
-    if(stack->top == -1)
-        return 1;
-    return 0;
+int stack_is_empty(stack_t* stack) {
+    return stack->top == -1;
 }
 
-int isFull(struct Stack* stack)
-{
-    if(stack->top == stack->capacity-1)
-        return 1;
-    return 0;
+int stack_is_full(stack_t* stack) {
+    return stack->top == stack->capacity - 1;
 }
 
-void freeStack(struct Stack* stack)
-{
+void stack_free(stack_t* stack) {
     free(stack->items);
     free(stack);
 }
 
-void printStack(struct Stack* stack)
-{
-    for(int i = 0; i <= stack->top; i++)
-        printf("%d ",stack->items[i]);
+void stack_print(stack_t* stack) {
+    for (int i = 0; i <= stack->top; i++)
+        printf("%d ", stack->items[i]);
     printf("\n");
 }
 
-int getSize(struct Stack* stack)
-{
-    return stack->top+1;
+int stack_size(stack_t* stack) {
+    return stack->top + 1;
 }
 
-int getCapacity(struct Stack* stack)
-{
+int stack_capacity(stack_t* stack) {
     return stack->capacity;
 }

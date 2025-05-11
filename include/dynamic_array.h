@@ -8,12 +8,12 @@ typedef struct
     int *data;
     size_t size;
     size_t capacity;
-} DynamicArray;
+} dynamic_array;
 
 // Function prototypes
-DynamicArray *createArray(size_t initialCapacity);
-void insertElement(DynamicArray *arr, int value);
-void deleteArray(DynamicArray *arr);
-void printArray(DynamicArray *arr);
+dynamic_array *createArray(size_t initialCapacity);
+void insertElement(dynamic_array *arr, int value);
+void deleteArray(dynamic_array *arr);
+void printArray(dynamic_array *arr);
 
 #endif

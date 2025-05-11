@@ -1,10 +1,10 @@
 #include "dynamic_array.h"
 
 // Create array
-DynamicArray *createArray(size_t initialCapacity)
+dynamic_array *create_array(size_t initialCapacity)
 {
     // create new array and allocate size of dynamic array
-    DynamicArray *arr = (DynamicArray *)malloc(sizeof(DynamicArray));
+    dynamic_array *arr = (dynamic_array *)malloc(sizeof(dynamic_array));
     // data is the array, so allocate initial capacity to it
     arr->data = (int *)malloc(initialCapacity * sizeof(int));
     if (!arr || !arr->data) 
@@ -19,11 +19,11 @@ DynamicArray *createArray(size_t initialCapacity)
     return arr;
 }
 
-void insertElement(DynamicArray *arr, int value)
+void insertElement(dynamic_array *arr, int value)
 {
     if (arr->size + 1 == arr->capacity)
     {
         arr->capacity *= 2;
-        arr = (DynamicArray *)realloc(arr, arr->capacity);
+        arr = (dynamic_array *)realloc(arr, arr->capacity);
     }
 }
